@@ -1,0 +1,51 @@
+from typing import List
+
+def maximumSubarraySum_withOneDeletion(arr: List[int]) -> int:
+    if not arr:
+        return 0
+
+    n = len(arr)
+    if n == 1:
+        return arr[0]
+    no_del = arr[0]
+    one_del = 0  
+    global_max = arr[0]
+
+    for i in range(1, n):
+        current_num = arr[i]
+        one_del = max(one_del + current_num, no_del)
+        no_del = max(no_del + current_num, current_num)
+
+        global_max = max(global_max, no_del, one_del)
+
+    return global_max
+if __name__ == '__main__':
+    print("--- Testing Maximum Subarray Sum with One Deletion ---\n")
+
+    arr1 = [1, -2, 3, -2, 5]
+    result1 = maximumSubarraySum_withOneDeletion(arr1)
+    print(f"Array: {arr1}")
+    print(f"Max Sum: {result1}") 
+    print("-" * 20)
+    arr2 = [8, -1, 3, -2, -1, 10]
+    result2 = maximumSubarraySum_withOneDeletion(arr2)
+    print(f"Array: {arr2}")
+    print(f"Max Sum: {result2}") 
+    print("-" * 20)
+    arr3 = [-1, -2, -3, -4]
+  
+    result3 = maximumSubarraySum_withOneDeletion(arr3)
+    print(f"Array: {arr3}")
+    print(f"Max Sum: {result3}")
+    print("-" * 20)
+
+    arr4 = [1, 2, 3, 4, 5]
+    result4 = maximumSubarraySum_withOneDeletion(arr4)
+    print(f"Array: {arr4}")
+    print(f"Max Sum: {result4}") 
+    print("-" * 20)
+    arr5 = [-1,-1,-1,-1]
+    result5 = maximumSubarraySum_withOneDeletion(arr5)
+    print(f"Array: {arr5}")
+    print(f"Max Sum: {result5}") 
+    print("-" * 20)
